@@ -14,7 +14,6 @@ public class BackgroundMover : MonoBehaviour
         _size = gameObject.GetComponentInParent<ParalaxBackground>(true).Length;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y - (_speed * Time.deltaTime), transform.position.z);

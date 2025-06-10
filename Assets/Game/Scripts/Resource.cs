@@ -6,6 +6,7 @@ using UnityEngine;
 public class Resource : MonoBehaviour
 {
     [SerializeField] private ResourceName _resources;
+    [SerializeField] private string _name;
     [SerializeField] private float _spawnChance;
 
     public float SpawnChance => _spawnChance;

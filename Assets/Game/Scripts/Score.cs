@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using YG;
@@ -6,8 +7,11 @@ using YG;
 public class Score : MonoBehaviour
 {
     [SerializeField] private float _scoreIncrese;
+
     private TMP_Text _text;
     private float _score;
+
+    public event Action<float> ChangedScore;
 
     private void Awake()
     {
@@ -20,6 +24,17 @@ public class Score : MonoBehaviour
         UpdateText();
     }
 
+    public bool CheckScore(float score)
+    {
+        return _score >= score;
+    }
+
+    public void DecreaseScore(float score) 
+    {
+        _score -= score;
+        UpdateText();
+    }
+
     public void IncreaseScore(Enemy resource, bool result)
     {
         if (result == false) 
@@ -28,13 +43,14 @@ public class Score : MonoBehaviour
         }
 
         _score += _scoreIncrese;
-        YandexGame.savesData.Score = _score;
-        YandexGame.SaveProgress();
         UpdateText();
+        ChangedScore?.Invoke(_scoreIncrese);
     }
 
     private void UpdateText()
     {
+        YandexGame.savesData.Score = _score;
+        YandexGame.SaveProgress();
         _text.text = _score.ToString();
     }
 }

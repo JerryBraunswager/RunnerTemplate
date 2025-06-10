@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using YG;
 
@@ -9,9 +8,11 @@ public class Inventory : MonoBehaviour
 
     private int[] _items = new int[9];
 
+    public event Action ChangedResource;
+
     private void Start()
     {
-        for(int i = 0; i < ((int)ResourceName.Obsidian);  i++) 
+        for(int i = 0; i <= ((int)ResourceName.Obsidian);  i++) 
         {
             _items[i] = YandexGame.savesData.Resources[i];
         }
@@ -31,6 +32,23 @@ public class Inventory : MonoBehaviour
     {
         _items[(int)obj.Resources] += 1;
         YandexGame.savesData.Resources[(int)obj.Resources] = _items[(int)obj.Resources];
+        ChangedResource?.Invoke();
         YandexGame.SaveProgress();
+    }
+
+    public int GetResourceCount(ResourceName resource)
+    {
+        return _items[(int)resource];
+    }
+
+    public void DecreaseResources(ResourceName resource, int amount)
+    {
+        if(amount < 0) 
+        {
+            return;
+        }
+
+        _items[(int)resource] -= amount;
+        ChangedResource?.Invoke();
     }
 }

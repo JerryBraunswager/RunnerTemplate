@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace YG
 {
     [System.Serializable]
@@ -19,7 +21,9 @@ namespace YG
         // Ваши сохранения
 
         public float Score;
+        public float Highscore;
         public int[] Resources = new int[9];
+        public List<Stat> Stats = new List<Stat>();
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 

@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
+using YG;
 
 [RequireComponent(typeof(Health))]
 public class PlayerStats : MonoBehaviour
@@ -20,19 +20,16 @@ public class PlayerStats : MonoBehaviour
         _currentHealth = GetComponent<Health>();
     }
 
-    private void Start()
-    {
-        NewHeroCreate();
-    }
-
     private void OnEnable()
     {
         _lines.LineChanged += SaveLine;
+        _currentHealth.HealthChanged += CheckAlive;
     }
 
     private void OnDisable()
     {
         _lines.LineChanged -= SaveLine;
+        _currentHealth.HealthChanged -= CheckAlive;
     }
 
     private void Update()
@@ -44,7 +41,7 @@ public class PlayerStats : MonoBehaviour
 
         Vector3 position = Camera.main.ScreenToWorldPoint(_line.position);
         Vector3 result = new Vector3(position.x, position.y, 0);
-        transform.position = Vector3.MoveTowards(transform.position, result, GetStat(Stats.BulletSpeed) * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, result, GetStat(Stats.StrafeSpeed) * Time.deltaTime);
     }
 
     public void TakeDamage(float amount)
@@ -65,23 +62,55 @@ public class PlayerStats : MonoBehaviour
         return 0;
     }
 
-    private void SaveLine(RectTransform line)
+    public void IncreaseStat(Stats statName, int increaseAmount)
     {
-        _line = line;
+        foreach(Stat stat in _startStats)
+        {
+            if (stat.NameEn == statName)
+            {
+                stat.IncreaseStat(increaseAmount);
+            }
+        }
+
+        YandexGame.savesData.Stats = _startStats;
+        YandexGame.SaveProgress();
     }
 
-    private void NewHeroCreate()
+    public void NewHeroCreate()
     {
-        foreach (Stat stat in _startStats) 
+        if(YandexGame.savesData.Stats.Count == _startStats.Count)
+        {
+            _startStats = YandexGame.savesData.Stats;
+        }
+        else
+        {
+            YandexGame.savesData.Stats = _startStats;
+            YandexGame.SaveProgress();
+        }
+
+        foreach (Stat stat in _startStats)
         {
             if (stat.NameEn == Stats.Health)
             {
                 _currentHealth.SetHealth(stat.Amount);
             }
 
-            Stat newStat =  new Stat();
-            newStat.SetStat(stat.NameEn, stat.NameRu, stat.Amount);
+            Stat newStat = new Stat();
+            newStat.SetStat(stat.NameEn, stat.NameRu, stat.Amount, stat.IncreaseAmount);
             _stats.Add(newStat);
+        }
+    }
+
+    private void SaveLine(RectTransform line)
+    {
+        _line = line;
+    }
+
+    private void CheckAlive(float health)
+    {
+        if(health <= 0)
+        {
+            _timeFlow.StopGame();
         }
     }
 }

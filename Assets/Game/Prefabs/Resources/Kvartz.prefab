@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resources: 5
+  _name: "\u041A\u0432\u0430\u0440\u0446"
   _spawnChance: 0.91
 --- !u!212 &3196128647888675540
 SpriteRenderer:

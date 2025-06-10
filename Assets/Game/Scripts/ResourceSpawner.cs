@@ -6,13 +6,13 @@ public class ResourceSpawner : MonoBehaviour
 {
     [SerializeField] private List<Resource> _resources;
 
-    private int _minResources;
-    private int _maxResources;
+    private float _minResources;
+    private float _maxResources;
     private int _amountResources;
 
     public event Action<Resource> OnSpawnResource;
 
-    public void SetAmount(int amount)
+    public void SetAmount(float amount)
     {
         _minResources = 1;
         _maxResources = amount + 1;

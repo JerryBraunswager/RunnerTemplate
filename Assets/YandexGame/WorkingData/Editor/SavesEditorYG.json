@@ -1,5 +1,5 @@
 {
-    "idSave": 16,
+    "idSave": 65,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -10,16 +10,55 @@
         true,
         false
     ],
-    "Score": 11.0,
+    "Score": 20.0,
+    "Highscore": 6.0,
     "Resources": [
         1,
+        2,
         1,
-        2,
-        2,
+        3,
+        1,
+        5,
         0,
         0,
-        0,
-        0,
-        0
+        2
+    ],
+    "Stats": [
+        {
+            "_stat": 0,
+            "_nameRu": "Здоровье",
+            "_amount": 100.0,
+            "_increaseAmount": 10.0
+        },
+        {
+            "_stat": 1,
+            "_nameRu": "Урон",
+            "_amount": 11.0,
+            "_increaseAmount": 1.0
+        },
+        {
+            "_stat": 2,
+            "_nameRu": "Скорость атаки",
+            "_amount": 1.100000023841858,
+            "_increaseAmount": -0.09000000357627869
+        },
+        {
+            "_stat": 3,
+            "_nameRu": "Скорость перемещения",
+            "_amount": 0.699999988079071,
+            "_increaseAmount": 0.699999988079071
+        },
+        {
+            "_stat": 4,
+            "_nameRu": "Скорость пули",
+            "_amount": 0.699999988079071,
+            "_increaseAmount": 0.09000000357627869
+        },
+        {
+            "_stat": 5,
+            "_nameRu": "Количество выпадающих ресурсов",
+            "_amount": 3.0,
+            "_increaseAmount": 0.5
+        }
     ]
 }

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b77a17bd7e0f9c4c8065cfad1f173a0, type: 3}
+  m_Name: A tenacious ship
+  m_EditorClassIdentifier: 
+  _nameRu: "\u0416\u0438\u0432\u0443\u0447\u0438\u0439 \u043A\u043E\u0440\u0430\u0431\u043B\u044C"
+  _sprite: {fileID: 21300000, guid: d782881bdfe36ee49919a254835e7761, type: 3}
+  _scoreNeed: 5
+  _resources:
+  - _resourceName: 2
+    _amount: 2
+  - _resourceName: 3
+    _amount: 1
+  _stats:
+  - _stat: 0
+    _nameRu: "\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435"
+    _amount: 2
+    _increaseAmount: 0
+  - _stat: 1
+    _nameRu: "\u0423\u0440\u043E\u043D"
+    _amount: 1
+    _increaseAmount: 0
+  - _stat: 4
+    _nameRu: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u043F\u0443\u043B\u0438"
+    _amount: -1
+    _increaseAmount: 0
+  _isBuyed: 0

@@ -49,11 +49,11 @@ public class Enemy : Disposable<Enemy>
         if(collision.gameObject.TryGetComponent(out PlayerStats stats)) 
         {
             stats.TakeDamage(_damage);
-            Invoke(this, true);
+            Invoke(this, false);
         }
     }
 
-    public void Init(float minHealth, float maxHealth, float speed, float damage, int amount)
+    public void Init(float minHealth, float maxHealth, float speed, float damage, float amount)
     {
         _speed = speed;
         _damage = damage;
